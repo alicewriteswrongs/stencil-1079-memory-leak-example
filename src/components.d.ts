@@ -7,18 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    }
+    interface RippleEffect {
     }
 }
 declare global {
@@ -28,27 +18,25 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLRippleEffectElement extends Components.RippleEffect, HTMLStencilElement {
+    }
+    var HTMLRippleEffectElement: {
+        prototype: HTMLRippleEffectElement;
+        new (): HTMLRippleEffectElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "ripple-effect": HTMLRippleEffectElement;
     }
 }
 declare namespace LocalJSX {
     interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    }
+    interface RippleEffect {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "ripple-effect": RippleEffect;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +44,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "ripple-effect": LocalJSX.RippleEffect & JSXBase.HTMLAttributes<HTMLRippleEffectElement>;
         }
     }
 }

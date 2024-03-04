@@ -8,20 +8,22 @@ export class MyComponent {
   isOpen = false;
 
   handler = () => {
-    try {
-      // @ts-ignore - safari only
-      console.takeHeapSnapshot('clicked!');
-    } catch (e) {
-      console.log(e)
-    }
-    this.isOpen = !this.isOpen;
+    setInterval(() => {
+      this.isOpen = !this.isOpen;
+    }, 10);
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.handler}></button>
-        {this.isOpen && <div><ripple-effect></ripple-effect></div>}
+        <button onClick={this.handler}>Trigger the leak</button>
+        <br />
+        {/* this kind of leak happens in prod too */}
+        {this.isOpen && <ion-tabs>
+          <ion-tab tab="home">
+            <ion-nav></ion-nav>
+          </ion-tab></ion-tabs>}
+
       </div>
     );
   }
