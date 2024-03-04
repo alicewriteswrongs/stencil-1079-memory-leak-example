@@ -20,9 +20,7 @@ export class MyComponent {
         <br />
         {/* this kind of leak happens in prod too */}
         {this.isOpen && <ion-tabs>
-          <ion-tab tab="home">
-            <ion-nav></ion-nav>
-          </ion-tab></ion-tabs>}
+          </ion-tabs>}
 
       </div>
     );
