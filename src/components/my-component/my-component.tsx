@@ -1,32 +1,28 @@
-import { Component, Prop, h } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, State, h } from '@stencil/core';
 
 @Component({
-  tag: 'my-component',
-  styleUrl: 'my-component.css',
-  shadow: true,
+  tag: 'my-component', // note the lack of encapsulation - although this also repros with shadow true
 })
 export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
+  @State()
+  isOpen = false;
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
-
-  /**
-   * The last name
-   */
-  @Prop() last: string;
-
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
+  handler = () => {
+    try {
+      // @ts-ignore - safari only
+      console.takeHeapSnapshot('clicked!');
+    } catch (e) {
+      console.log(e)
+    }
+    this.isOpen = !this.isOpen;
   }
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    return (
+      <div>
+        <button onClick={this.handler}></button>
+        {this.isOpen && <div><ripple-effect></ripple-effect></div>}
+      </div>
+    );
   }
 }
