@@ -9,6 +9,10 @@ export type RouteWrite = any;
 
 export type TabButtonClickEventDetail = any;
 
+export type HTMLIonTabElement = any;
+
+export type HTMLIonTabsElement = any;
+
 /**
  * @slot - Content is placed between the named slots if provided without a slot.
  * @slot top - Content is placed at the top of the screen.
@@ -160,6 +164,7 @@ export class Tabs implements NavOutlet {
     if (this.useRouter) {
       const router = document.querySelector('ion-router');
       if (router) {
+        // @ts-ignore
         return router.navChanged('forward');
       }
     }
@@ -180,6 +185,7 @@ export class Tabs implements NavOutlet {
     if (this.useRouter && href !== undefined) {
       const router = document.querySelector('ion-router');
       if (router) {
+        // @ts-ignore
         router.push(href);
       }
     } else {

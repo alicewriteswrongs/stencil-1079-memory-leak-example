@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RouteID, RouteWrite } from "./components/my-tabs/my-tabs";
-export { RouteID, RouteWrite } from "./components/my-tabs/my-tabs";
+import { HTMLIonTabElement, RouteID, RouteWrite } from "./components/my-tabs/my-tabs";
+export { HTMLIonTabElement, RouteID, RouteWrite } from "./components/my-tabs/my-tabs";
 export namespace Components {
     interface MyComponent {
     }
