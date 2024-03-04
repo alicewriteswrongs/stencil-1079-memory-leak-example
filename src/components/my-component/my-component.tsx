@@ -19,9 +19,9 @@ export class MyComponent {
         <button onClick={this.handler}>Trigger the leak</button>
         <br />
         {/* this kind of leak happens in prod too */}
-        {this.isOpen && <ion-tabs>
-          </ion-tabs>}
-
+        {this.isOpen && <my-tabs>
+            <div>hey</div>
+          </my-tabs>}
       </div>
     );
   }
