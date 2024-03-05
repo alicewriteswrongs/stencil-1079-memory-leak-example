@@ -29,8 +29,6 @@ export namespace Components {
         "setRouteId": (id: string) => Promise<RouteWrite>;
         "useRouter": boolean;
     }
-    interface RippleEffect {
-    }
 }
 export interface MyTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -62,16 +60,9 @@ declare global {
         prototype: HTMLMyTabsElement;
         new (): HTMLMyTabsElement;
     };
-    interface HTMLRippleEffectElement extends Components.RippleEffect, HTMLStencilElement {
-    }
-    var HTMLRippleEffectElement: {
-        prototype: HTMLRippleEffectElement;
-        new (): HTMLRippleEffectElement;
-    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "my-tabs": HTMLMyTabsElement;
-        "ripple-effect": HTMLRippleEffectElement;
     }
 }
 declare namespace LocalJSX {
@@ -92,12 +83,9 @@ declare namespace LocalJSX {
         "onIonTabsWillChange"?: (event: MyTabsCustomEvent<{ tab: string }>) => void;
         "useRouter"?: boolean;
     }
-    interface RippleEffect {
-    }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "my-tabs": MyTabs;
-        "ripple-effect": RippleEffect;
     }
 }
 export { LocalJSX as JSX };
@@ -106,7 +94,6 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "my-tabs": LocalJSX.MyTabs & JSXBase.HTMLAttributes<HTMLMyTabsElement>;
-            "ripple-effect": LocalJSX.RippleEffect & JSXBase.HTMLAttributes<HTMLRippleEffectElement>;
         }
     }
 }
