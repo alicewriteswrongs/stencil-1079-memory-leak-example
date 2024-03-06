@@ -10,7 +10,7 @@ export class MyComponent {
   handler = () => {
     setInterval(() => {
       this.isOpen = !this.isOpen;
-    }, 10);
+    }, 1000);
   }
 
   render() {
@@ -19,9 +19,10 @@ export class MyComponent {
         <button onClick={this.handler}>Trigger the leak</button>
         <br />
         {/* this kind of leak happens in prod too */}
-        {this.isOpen && <my-tabs>
-            <div>hey</div>
-          </my-tabs>}
+        {this.isOpen && <ion-tabs>
+          <ion-tab tab="home">
+            <ion-nav></ion-nav>
+          </ion-tab></ion-tabs>}
       </div>
     );
   }
