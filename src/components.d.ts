@@ -10,6 +10,8 @@ export { HTMLIonTabElement, RouteID, RouteWrite } from "./components/my-tabs/my-
 export namespace Components {
     interface MyComponent {
     }
+    interface MyTab {
+    }
     interface MyTabs {
         "getRouteId": () => Promise<RouteID | undefined>;
         /**
@@ -41,6 +43,12 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLMyTabElement extends Components.MyTab, HTMLStencilElement {
+    }
+    var HTMLMyTabElement: {
+        prototype: HTMLMyTabElement;
+        new (): HTMLMyTabElement;
+    };
     interface HTMLMyTabsElementEventMap {
         "ionNavWillLoad": void;
         "ionTabsWillChange": { tab: string };
@@ -62,11 +70,14 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "my-tab": HTMLMyTabElement;
         "my-tabs": HTMLMyTabsElement;
     }
 }
 declare namespace LocalJSX {
     interface MyComponent {
+    }
+    interface MyTab {
     }
     interface MyTabs {
         /**
@@ -85,6 +96,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "my-tab": MyTab;
         "my-tabs": MyTabs;
     }
 }
@@ -93,6 +105,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "my-tab": LocalJSX.MyTab & JSXBase.HTMLAttributes<HTMLMyTabElement>;
             "my-tabs": LocalJSX.MyTabs & JSXBase.HTMLAttributes<HTMLMyTabsElement>;
         }
     }
