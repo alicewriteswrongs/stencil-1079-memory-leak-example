@@ -193,6 +193,10 @@ export class Tabs implements NavOutlet {
     }
   };
 
+  disconnectedCallback() {
+    this.selectedTab = undefined;
+  }
+
   render() {
     return (
       <Host onIonTabButtonClick={this.onTabClicked}>

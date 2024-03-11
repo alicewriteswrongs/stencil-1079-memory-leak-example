@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@ionic/core": "^7.7.3",
-    "@stencil/core": "file:../../stencil/stencil-core-4.12.5.tgz"
+    "@stencil/core": "^4.12.6"
   },
   "devDependencies": {
     "@types/jest": "^29.5.6",
