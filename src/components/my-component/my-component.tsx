@@ -20,7 +20,9 @@ export class MyComponent {
         <button onClick={this.handler}>Trigger the leak</button>
         <br />
         {/* this kind of leak happens in prod too */}
-        {this.isOpen && <ion-nav>stealing all your memory, sorry</ion-nav>}
+        {this.isOpen && <my-tabs>
+          <ion-nav>stealing all your memory, sorry</ion-nav>
+          </my-tabs>}
       </div>
     );
   }
