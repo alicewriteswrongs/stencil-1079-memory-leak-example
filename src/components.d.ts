@@ -5,15 +5,137 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { HTMLIonTabElement, RouteID, RouteWrite } from "./components/my-tabs/my-tabs";
-export { HTMLIonTabElement, RouteID, RouteWrite } from "./components/my-tabs/my-tabs";
+import { AnimationBuilder, ComponentProps, FrameworkDelegate, NavComponent, NavComponentWithProps, NavOptions, RouteID, RouterDirection, RouteWrite, TransitionDoneFn, TransitionInstruction, ViewController } from "./components/my-nav/my-nav";
+import { HTMLIonTabElement, RouteID as RouteID1, RouteWrite as RouteWrite1 } from "./components/my-tabs/my-tabs";
+export { AnimationBuilder, ComponentProps, FrameworkDelegate, NavComponent, NavComponentWithProps, NavOptions, RouteID, RouterDirection, RouteWrite, TransitionDoneFn, TransitionInstruction, ViewController } from "./components/my-nav/my-nav";
+export { HTMLIonTabElement, RouteID as RouteID1, RouteWrite as RouteWrite1 } from "./components/my-tabs/my-tabs";
 export namespace Components {
+    interface IonNav {
+        /**
+          * If `true`, the nav should animate the transition of components.
+         */
+        "animated": boolean;
+        /**
+          * By default `ion-nav` animates transition between pages based in the mode (ios or material design). However, this property allows to create custom transition using `AnimationBuilder` functions.
+         */
+        "animation"?: AnimationBuilder;
+        /**
+          * Returns `true` if the current view can go back.
+          * @param view The view to check.
+         */
+        "canGoBack": (view?: ViewController) => Promise<boolean>;
+        "delegate"?: FrameworkDelegate;
+        /**
+          * Get the active view.
+         */
+        "getActive": () => Promise<ViewController | undefined>;
+        /**
+          * Get the view at the specified index.
+          * @param index The index of the view.
+         */
+        "getByIndex": (index: number) => Promise<ViewController | undefined>;
+        /**
+          * Get the previous view.
+          * @param view The view to get.
+         */
+        "getPrevious": (view?: ViewController) => Promise<ViewController | undefined>;
+        /**
+          * Called by <ion-router> to retrieve the current component.
+         */
+        "getRouteId": () => Promise<RouteID | undefined>;
+        /**
+          * Inserts a component into the navigation stack at the specified index. This is useful to add a component at any point in the navigation stack.
+          * @param insertIndex The index to insert the component at in the stack.
+          * @param component The component to insert into the navigation stack.
+          * @param componentProps Any properties of the component.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "insert": <T extends unknown>(insertIndex: number, component: T, componentProps?: any | null, opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Inserts an array of components into the navigation stack at the specified index. The last component in the array will become instantiated as a view, and animate in to become the active view.
+          * @param insertIndex The index to insert the components at in the stack.
+          * @param insertComponents The components to insert into the navigation stack.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "insertPages": (insertIndex: number, insertComponents: any, opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Pop a component off of the navigation stack. Navigates back from the current component.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "pop": (opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Pop to a specific index in the navigation stack.
+          * @param indexOrViewCtrl The index or view controller to pop to.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "popTo": (indexOrViewCtrl: number | ViewController, opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Navigate back to the root of the stack, no matter how far back that is.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "popToRoot": (opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Push a new component onto the current navigation stack. Pass any additional information along as an object. This additional information is accessible through NavParams.
+          * @param component The component to push onto the navigation stack.
+          * @param componentProps Any properties of the component.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "push": <T extends unknown>(component: T, componentProps?: any | null, opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Removes a component from the navigation stack at the specified index.
+          * @param startIndex The number to begin removal at.
+          * @param removeCount The number of components to remove.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "removeIndex": (startIndex: number, removeCount?: number, opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Root NavComponent to load
+         */
+        "root"?: NavComponent;
+        /**
+          * Any parameters for the root component
+         */
+        "rootParams"?: any;
+        /**
+          * Set the views of the current navigation stack and navigate to the last view. By default animations are disabled, but they can be enabled by passing options to the navigation controller. Navigation parameters can also be passed to the individual pages in the array.
+          * @param views The list of views to set as the navigation stack.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "setPages": (views: NavComponent[] | NavComponentWithProps[], opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Set the root for the current navigation stack to a component.
+          * @param component The component to set as the root of the navigation stack.
+          * @param componentProps Any properties of the component.
+          * @param opts The navigation options.
+          * @param done The transition complete function.
+         */
+        "setRoot": <T extends unknown>(component: T, componentProps?: any | null, opts?: NavOptions | null, done?: TransitionDoneFn) => Promise<boolean>;
+        /**
+          * Called by the router to update the view.
+          * @param id The component tag.
+          * @param params The component params.
+          * @param direction A direction hint.
+          * @param animation an AnimationBuilder.
+          * @return the status.
+         */
+        "setRouteId": (id: string, params: ComponentProps | undefined, direction: RouterDirection, animation?: AnimationBuilder) => Promise<RouteWrite>;
+        /**
+          * If the nav component should allow for swipe-to-go-back.
+         */
+        "swipeGesture"?: boolean;
+    }
     interface MyComponent {
     }
-    interface MyTab {
-    }
     interface MyTabs {
-        "getRouteId": () => Promise<RouteID | undefined>;
+        "getRouteId": () => Promise<RouteID1 | undefined>;
         /**
           * Get the currently selected tab. This method is only available for vanilla JavaScript projects. The Angular, React, and Vue implementations of tabs are coupled to each framework's router.
          */
@@ -28,26 +150,43 @@ export namespace Components {
           * @param tab The tab instance to select. If passed a string, it should be the value of the tab's `tab` property.
          */
         "select": (tab: string | HTMLIonTabElement) => Promise<boolean>;
-        "setRouteId": (id: string) => Promise<RouteWrite>;
+        "setRouteId": (id: string) => Promise<RouteWrite1>;
         "useRouter": boolean;
     }
+}
+export interface IonNavCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIonNavElement;
 }
 export interface MyTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLMyTabsElement;
 }
 declare global {
+    interface HTMLIonNavElementEventMap {
+        "ionNavWillLoad": void;
+        "ionNavWillChange": void;
+        "ionNavDidChange": void;
+    }
+    interface HTMLIonNavElement extends Components.IonNav, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIonNavElementEventMap>(type: K, listener: (this: HTMLIonNavElement, ev: IonNavCustomEvent<HTMLIonNavElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIonNavElementEventMap>(type: K, listener: (this: HTMLIonNavElement, ev: IonNavCustomEvent<HTMLIonNavElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIonNavElement: {
+        prototype: HTMLIonNavElement;
+        new (): HTMLIonNavElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
-    };
-    interface HTMLMyTabElement extends Components.MyTab, HTMLStencilElement {
-    }
-    var HTMLMyTabElement: {
-        prototype: HTMLMyTabElement;
-        new (): HTMLMyTabElement;
     };
     interface HTMLMyTabsElementEventMap {
         "ionNavWillLoad": void;
@@ -69,15 +208,48 @@ declare global {
         new (): HTMLMyTabsElement;
     };
     interface HTMLElementTagNameMap {
+        "ion-nav": HTMLIonNavElement;
         "my-component": HTMLMyComponentElement;
-        "my-tab": HTMLMyTabElement;
         "my-tabs": HTMLMyTabsElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface IonNav {
+        /**
+          * If `true`, the nav should animate the transition of components.
+         */
+        "animated"?: boolean;
+        /**
+          * By default `ion-nav` animates transition between pages based in the mode (ios or material design). However, this property allows to create custom transition using `AnimationBuilder` functions.
+         */
+        "animation"?: AnimationBuilder;
+        "delegate"?: FrameworkDelegate;
+        /**
+          * Event fired when the nav has changed components
+         */
+        "onIonNavDidChange"?: (event: IonNavCustomEvent<void>) => void;
+        /**
+          * Event fired when the nav will change components
+         */
+        "onIonNavWillChange"?: (event: IonNavCustomEvent<void>) => void;
+        /**
+          * Event fired when Nav will load a component
+         */
+        "onIonNavWillLoad"?: (event: IonNavCustomEvent<void>) => void;
+        /**
+          * Root NavComponent to load
+         */
+        "root"?: NavComponent;
+        /**
+          * Any parameters for the root component
+         */
+        "rootParams"?: any;
+        /**
+          * If the nav component should allow for swipe-to-go-back.
+         */
+        "swipeGesture"?: boolean;
     }
-    interface MyTab {
+    interface MyComponent {
     }
     interface MyTabs {
         /**
@@ -95,8 +267,8 @@ declare namespace LocalJSX {
         "useRouter"?: boolean;
     }
     interface IntrinsicElements {
+        "ion-nav": IonNav;
         "my-component": MyComponent;
-        "my-tab": MyTab;
         "my-tabs": MyTabs;
     }
 }
@@ -104,8 +276,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ion-nav": LocalJSX.IonNav & JSXBase.HTMLAttributes<HTMLIonNavElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
-            "my-tab": LocalJSX.MyTab & JSXBase.HTMLAttributes<HTMLMyTabElement>;
             "my-tabs": LocalJSX.MyTabs & JSXBase.HTMLAttributes<HTMLMyTabsElement>;
         }
     }

@@ -5,14 +5,20 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
+## Dependencies
 
-| Property | Attribute | Description     | Type     | Default     |
-| -------- | --------- | --------------- | -------- | ----------- |
-| `first`  | `first`   | The first name  | `string` | `undefined` |
-| `last`   | `last`    | The last name   | `string` | `undefined` |
-| `middle` | `middle`  | The middle name | `string` | `undefined` |
+### Depends on
 
+- [my-tabs](../my-tabs)
+- [ion-nav](../my-nav)
+
+### Graph
+```mermaid
+graph TD;
+  my-component --> my-tabs
+  my-component --> ion-nav
+  style my-component fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
